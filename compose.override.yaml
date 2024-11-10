@@ -1,0 +1,15 @@
+
+services:
+###> doctrine/doctrine-bundle ###
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: ledger_db
+      POSTGRES_USER: ledger
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+###< doctrine/doctrine-bundle ###

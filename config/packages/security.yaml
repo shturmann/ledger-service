@@ -1,0 +1,27 @@
+security:
+    # Enable the authenticator manager
+    enable_authenticator_manager: true
+
+    # Password hashers configuration
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+            algorithm: 'auto'
+            cost: 15
+
+    # Providers define how users are loaded
+    providers:
+        users_in_memory: { memory: null }
+
+    # Firewalls configure authentication for different parts of your site
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            lazy: true
+            provider: users_in_memory
+
+    # Access control defines which roles can access which URLs
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }

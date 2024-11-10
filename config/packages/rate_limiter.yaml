@@ -1,0 +1,6 @@
+framework:
+    rate_limiter:
+        api:
+            policy: 'fixed_window'
+            limit: '%env(int:RATE_LIMIT_PER_MINUTE)%'
+            interval: '1 minute'
