@@ -34,3 +34,28 @@ docker-compose exec app vendor/bin/php-cs-fixer fix src
 # Run PHPStan
 docker-compose exec app vendor/bin/phpstan analyse src tests
 ```
+
+### Endpoints:
+1. Create a ledger:
+```bash
+curl -X POST http://localhost:8080/api/v1/ledgers \
+  -H "Content-Type: application/json" \
+  -d '{"currency":"USD"}'
+```
+
+2. Create transaction:
+```bash
+curl -X POST http://localhost:8080/api/v1/ledgers/{identifier}/transactions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "transactionId": "550e8400-e29b-41d4-a716-446655440000",
+    "type": "credit",
+    "amount": 100.50,
+    "currency": "USD"
+  }'
+```
+
+3. Get Balance:
+```bash
+curl http://localhost:8080/api/v1/ledgers/{identifier}/balance
+```
